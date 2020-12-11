@@ -14,12 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::post('add_user', [Auth\RegisterController::class, 'register']);
+
 Route::group(['namespace'=> 'App\Http\Controllers\Auth'], function() {
     Route::post('add_user', 'RegisterController@user_register');
     Route::post('verify_email', 'RegisterController@verify_email');
     Route::post('login_user', 'LoginController@login_user');
-//    Route::post('add_user', [RegisterController::class, 'user_register']);
 });
 
 
