@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use DB;
+use ReallySimpleJWT\Token;
 
 class LoginController extends Controller
 {
@@ -61,7 +62,7 @@ class LoginController extends Controller
 
             $user = DB::table('users')->where('email', $request->email)->where('email_verified_at', '!=', null)->first();
             if (empty($user))
-                return response()->json(['success' => false, 'result' => 'Your account was not verified yet.']);
+                return response()->json(['success' => false, 'result' => 'Your email was not verified yet.']);
             else {
                 $client_info = new CaptureIpTrait();
                 $user_ipaddress = $client_info->getClientIp();
@@ -73,7 +74,13 @@ class LoginController extends Controller
                 DB::table('user_logins')->insert(['user_id'=>$user->id, 'ip_address'=>$user_ipaddress, 'country' => $user_country, 'device' => $user_device,
                     'platform' => $user_platform, 'browser'=>$user_browser, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s') ]);
 
-                return response()->json(['success' => true, 'result' => 'You logged successfully']);
+                $secret = '!sixMenu*atarit$915*';
+                $expiration = time() + 3600;
+                $issuer = $user_ipaddress;
+                $token = Token::create($user->id, $secret, $expiration, $issuer);
+
+                DB::table('users')->where('email', $request->email)->update(['api_token'=> $token]);
+                return response()->json(['success' => true, 'result' => ['token' => $token, 'membership' => $user->membership] ]);
             }
         }
         else
