@@ -22,6 +22,11 @@ Route::group(['namespace'=> 'App\Http\Controllers\Auth'], function() {
 
 Route::group(['middleware' => ['auth:api']], function(){
     Route::group(['namespace'=> 'App\Http\Controllers'], function() {
+
+        // Common
+        Route::get('common_categories', 'CommonController@get_categories');
+        Route::get('common_products', 'CommonController@get_products');
+
         // Category Management
         Route::get('categories', 'CategoryController@get_categories');
         Route::post('add_category', 'CategoryController@add_category');
@@ -29,6 +34,10 @@ Route::group(['middleware' => ['auth:api']], function(){
         Route::delete('remove_category/{id}', 'CategoryController@remove_category');
 
         // Product Management
+        Route::get('products', 'ProductController@get_products');
+        Route::post('add_product', 'ProductController@add_product');
+        Route::put('update_product/{id}', 'ProductController@update_product');
+        Route::delete('remove_product/{id}', 'ProductController@remove_product');
     });
 });
 

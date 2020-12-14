@@ -20,7 +20,7 @@ class CategoryController extends Controller
     {
         $user = Auth::user();
         $categories = DB::table('categories')->where('user_id', $user->id)->get();
-        DB::table('site_histories')->insert(['user_id' => $user->id, 'page_name'=>'Categories', 'page_url'=>'admin/category', 'user_action'=>'browse', 'created_at'=>$this->now]);
+        DB::table('site_histories')->insert(['user_id' => $user->id, 'page_name'=>'Categories', 'page_url'=>'admin/category', 'user_action'=>'Browse', 'created_at'=>$this->now]);
 
         $data = [];
         foreach($categories as $category) {
@@ -103,7 +103,7 @@ class CategoryController extends Controller
         $category_name_hb = $request->category_name_hb == null ? '' : $request->category_name_hb;
 
         $categories_en_count = DB::table('categories')->where(['user_id'=> $user->id, 'name_en'=> $category_name_en])->where('id', '!=', $category_id)->count();
-        $categories_hb_count = DB::table('categories')->where(['user_id'=> $user->id, 'name_hb'=> $category_name_hb])->where('name_hb', '!=', '')->count();
+        $categories_hb_count = DB::table('categories')->where(['user_id'=> $user->id, 'name_hb'=> $category_name_hb])->where('name_hb', '!=', '')->where('id', '!=', $category_id)->count();
         if ($categories_en_count > 0 || $categories_hb_count > 0) {
             return response()->json([ 'success' => false, 'result' => 'The category already existed. Please enter the another category name (EN or HB)' ]);
         }
