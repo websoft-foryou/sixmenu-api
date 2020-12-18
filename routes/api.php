@@ -38,6 +38,11 @@ Route::group(['middleware' => ['auth:api']], function(){
         Route::post('add_product', 'ProductController@add_product');
         Route::put('update_product/{id}', 'ProductController@update_product');
         Route::delete('remove_product/{id}', 'ProductController@remove_product');
+
+        // Restaurant Information
+        Route::get('get_restaurant', 'RestaurantController@get_restaurant');
+        Route::put('update_restaurant', 'RestaurantController@update_restaurant');
+
     });
 });
 
