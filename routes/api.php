@@ -43,6 +43,18 @@ Route::group(['middleware' => ['auth:api']], function(){
         Route::get('get_restaurant', 'RestaurantController@get_restaurant');
         Route::put('update_restaurant', 'RestaurantController@update_restaurant');
 
+        // User History
+        Route::get('get_history', 'HistoryController@get_history');
+
+        // User Analytics
+        Route::get('get_user_daily_analytics_data/{year}/{month}', 'AnalyticsController@get_user_daily_analytics_data');
+        Route::get('get_user_weekly_analytics_data/{year}/{month}', 'AnalyticsController@get_user_weekly_analytics_data');
+        Route::get('get_user_monthly_analytics_data/{year}', 'AnalyticsController@get_user_monthly_analytics_data');
+
+        // Income Analytics
+        Route::get('get_income_daily_analytics_data/{year}/{month}', 'AnalyticsController@get_income_daily_analytics_data');
+        Route::get('get_income_weekly_analytics_data/{year}/{month}', 'AnalyticsController@get_income_weekly_analytics_data');
+        Route::get('get_income_monthly_analytics_data/{year}', 'AnalyticsController@get_income_monthly_analytics_data');
     });
 });
 
