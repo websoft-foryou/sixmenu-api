@@ -12,6 +12,7 @@ class SendActivationEmail extends Notification implements ShouldQueue
     use Queueable;
 
     protected $token;
+    protected $route;
 
     /**
      * Create a new notification instance.
@@ -20,9 +21,10 @@ class SendActivationEmail extends Notification implements ShouldQueue
      *
      * @param $token
      */
-    public function __construct($token)
+    public function __construct($token, $route = 'email-activate')
     {
         $this->token = $token;
+        $this->route = $route;
         $this->onQueue('social');
     }
 
@@ -51,7 +53,7 @@ class SendActivationEmail extends Notification implements ShouldQueue
         $message->subject(trans('emails.activationSubject'))
             ->greeting(trans('emails.activationGreeting'))
             ->line(trans('emails.activationMessage'))
-            ->action(trans('emails.activationButton'), route('email-activate', ['token' => $this->token]))
+            ->action(trans('emails.activationButton'), route($this->route, ['token' => $this->token]))
             ->line(trans('emails.activationThanks'));
 
         return $message;

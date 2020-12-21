@@ -30,6 +30,9 @@ class User extends Authenticatable
         'removed',
         'remember_token',
         'password',
+        'membership',
+        'membership_created_at',
+        'api_token'
     ];
 
     /**
@@ -40,6 +43,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'email_token'
     ];
 
     /**

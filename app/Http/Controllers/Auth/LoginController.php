@@ -84,7 +84,7 @@ class LoginController extends Controller
             }
         }
         else
-            return response()->json(['success' => false, 'result' => 'The email or passord is wrong. Please try again']);
+            return response()->json(['success' => false, 'result' => 'The email or password is wrong. Please try again']);
     }
 
     /**

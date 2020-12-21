@@ -21,6 +21,8 @@ class AnalyticsController extends Controller
         $month = $request->month;
         $user = Auth::user();
 
+        DB::table('site_histories')->insert(['user_id' => $user->id, 'page_name'=>'User Analytics', 'page_url'=>'admin/analytics', 'user_action'=>'Browse', 'created_at'=>$this->now]);
+
         $last_date = date('Y-m-t', strtotime($year . '-' . $month . '-01'));
         $last_date = substr($last_date, 8, 2);
 

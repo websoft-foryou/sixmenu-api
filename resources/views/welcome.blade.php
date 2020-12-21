@@ -16,8 +16,8 @@
         href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
     <title>Six Menu - Restaurant in Israel</title>
-    <link href="{{ asset('/static/css/2.791f1c5e.chunk.css') }}" rel="stylesheet">
-    <link href="{{ asset('/static/css/main.98043614.chunk.css') }}" rel="stylesheet">
+    <link href="{{ asset('/static/css/2.bc581860.chunk.css') }}" rel="stylesheet">
+    <link href="{{ asset('/static/css/main.1cc56afe.chunk.css') }}" rel="stylesheet">
 </head>
 <body>
 <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -80,7 +80,7 @@
         var s = n;
         a()
     }([])</script>
-<script src="{{ asset('/static/js/2.4f80c853.chunk.js') }}"></script>
-<script src="{{ asset('/static/js/main.1a725f3f.chunk.js') }}"></script>
+<script src="{{ asset('/static/js/2.4e12ab5f.chunk.js') }}"></script>
+<script src="{{ asset('/static/js/main.75e90f49.chunk.js') }}"></script>
 </body>
 </html>

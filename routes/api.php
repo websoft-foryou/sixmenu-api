@@ -18,7 +18,11 @@ Route::group(['namespace'=> 'App\Http\Controllers\Auth'], function() {
     Route::post('add_user', 'RegisterController@user_register');
     Route::post('verify_email', 'RegisterController@verify_email');
     Route::post('login_user', 'LoginController@login_user');
+    Route::post('complete_signup_payment', 'RegisterController@complete_payment');
+
 });
+
+
 
 Route::group(['middleware' => ['auth:api']], function(){
     Route::group(['namespace'=> 'App\Http\Controllers'], function() {
@@ -55,8 +59,24 @@ Route::group(['middleware' => ['auth:api']], function(){
         Route::get('get_income_daily_analytics_data/{year}/{month}', 'AnalyticsController@get_income_daily_analytics_data');
         Route::get('get_income_weekly_analytics_data/{year}/{month}', 'AnalyticsController@get_income_weekly_analytics_data');
         Route::get('get_income_monthly_analytics_data/{year}', 'AnalyticsController@get_income_monthly_analytics_data');
+
+        // Setting
+        Route::put('update_email', 'SettingController@update_email');
+        Route::put('update_password', 'SettingController@update_password');
+
+        // Pricing
+        Route::get('get_membership', 'MembershipController@get_membership');
+        Route::post('charge_paypal', 'MembershipController@charge_paypal');
+        Route::post('complete_payment', 'MembershipController@complete_payment');
+        Route::post('charge_card', 'MembershipController@charge_card');
+        Route::get('downgrade_freemium', 'MembershipController@downgrade_freemium');
+
+        // Dashboard
+        Route::get('get_recent_data', 'DashboardController@get_recent_data');
     });
 });
+
+//Route::post('complete_payment', 'App\Http\Controllers\MembershipController@complete_payment');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
