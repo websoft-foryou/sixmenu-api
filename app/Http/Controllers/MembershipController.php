@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Omnipay\Omnipay;
 use Omnipay\Common\CreditCard;
 
@@ -94,8 +95,24 @@ class MembershipController extends Controller
     public function charge_card(Request $request)
     {
         $user = Auth::user();
+        $validator = Validator::make($request->all(), [
+            'holder_name' => ['required'],
+            'card_number' => ['required'],
+            'expire_month' => ['required'],
+            'expire_year' => ['required'],
+            'cvc_number' => ['required'],
+            'billing_country' => ['required'],
+            'address' => ['required'],
+            'city' => ['required'],
+            'post_code' => ['required'],
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['success' => false, 'result' => $validator->errors()->first() ]);
+        }
+
         $formData = array(
-            'name' => $request->holer_name,
+            'name' => $request->holder_name,
             'number' => $request->card_number,
             'expiryMonth' => $request->expire_month,
             'expiryYear' => $request->expire_year,
