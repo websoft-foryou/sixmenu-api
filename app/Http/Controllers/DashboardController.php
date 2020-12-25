@@ -50,15 +50,15 @@ class DashboardController extends Controller
             $income_data[$month] = $income->amount;
         }
 
-        // recent visitor
-        $recent_data = $data = [];
-        $recent_visitors = DB::select("SELECT SUBSTRING(created_at, 5, 5) activity_date, ip_address, country FROM user_activities
-            WHERE restaurant_id='$restaurant_id' AND user_action='Visit' ORDER BY id DESC LIMIT 5" );
-        foreach($recent_visitors as $visitor) {
-            $data['id'] = $activity->id;
-            $data['activity_date'] = $visitor->activity_date;
-            $data['description'] = $visitor->country . '(' . $visitor->ip_address . ')';
-            $recent_data[] = $data;
+        // recent reviews
+        $recent_reviews = $data = [];
+        $reviews = DB::select("SELECT SUBSTRING(created_at, 5, 5) review_date, description FROM reviews
+            WHERE restaurant_id='$restaurant_id' ORDER BY id DESC LIMIT 5" );
+        foreach($reviews as $review) {
+            $data['id'] = $review->id;
+            $data['review_date'] = $review->review_date;
+            $data['description'] = $review->description;
+            $recent_reviews[] = $data;
         }
 
         // country_data
@@ -103,7 +103,7 @@ class DashboardController extends Controller
             'total_visitors' => count($total_visitors),
             'total_incomes' => $total_incomes[0]->total_amount == null ? 0 : $total_incomes[0]->total_amount,
             'last_activies' => $activity_data,
-            'recent_visitors' => $recent_data,
+            'recent_reviews' => $recent_reviews,
             'income_data' => $income_data,
             'country_data' => $country_data,
             'device_data' => $device_data,
