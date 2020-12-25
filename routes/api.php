@@ -73,6 +73,7 @@ Route::group(['middleware' => ['auth:api']], function(){
 
         // Dashboard
         Route::get('get_recent_data', 'DashboardController@get_recent_data');
+        Route::post('send_qrcode', 'DashboardController@send_qrcode');
     });
 });
 

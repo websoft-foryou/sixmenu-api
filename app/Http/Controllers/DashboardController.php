@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Auth;
 use DB;
 use DateTime;
+use Mail;
+
 
 class DashboardController extends Controller
 {
@@ -14,6 +17,41 @@ class DashboardController extends Controller
     {
         $this->middleware('auth');
         $this->now = date('Y-m-d H:i:s');
+    }
+
+    public function send_qrcode(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => ['required', 'string', 'email'],
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['success' => false, 'result' => $validator->errors()->first() ]);
+        }
+
+        $user = Auth::user();
+        $restaurant = DB::table('restaurants')->where('user_id', $user->id)->first();
+
+        $qrcode = $request->qrcode;
+        $receiver_email = $request->email;
+        $receiver_name = '';
+        $sender_name = 'Administrator@atarit.com';
+
+        $data = ['qrcode'=>$request->qrcode, 'restaurant'=>$restaurant->name_en];
+        Mail::send(['html' => 'normal_email'], $data, function($message) use($receiver_email, $receiver_name, $sender_name, $qrcode ) {
+            $message->to($receiver_email, $receiver_name)->subject('Our QRCode');
+            $message->from(env('MAIL_FROM_ADDRESS'), $sender_name);
+
+            $replace = substr($qrcode, 0, strpos($qrcode, ',')+1);
+            $qrcode_image = str_replace($replace, '', $qrcode);
+            $qrcode_image = str_replace(' ', '+', $qrcode_image);
+
+            $message->attachData(base64_decode($qrcode_image), 'qrcode.png', ['mime'=>'image/png']);
+        });
+
+        DB::table('site_histories')->insert(['user_id' => $user->id, 'page_name'=>'Dashboard', 'page_url'=>'admin/dashboard', 'user_action'=>'Send QRCode',
+            'new_value'=>$request->email, 'created_at'=>$this->now]);
+
+        return response()->json(['success' => true, 'result' => 'OK']);
     }
 
     public function get_recent_data(Request $request)
