@@ -23,11 +23,12 @@ Route::get('/admin/login', function () { return view('welcome'); });
 
 Route::get('/admin/dashboard', function () { return view('welcome'); });
 
+Route::get('/admin/javascript', function () { return view('welcome'); });
+
 Route::get('/email-activate/{token}', function() { return view('welcome'); })->name('email-activate');
 Route::get('/email-reactivate/{token}', function() { return view('welcome'); })->name('email-reactivate');
 
 Route::get('/payment_success', function() { return view('welcome'); })->name('payment_success');
 Route::get('/payment_error', function() { return view('welcome'); })->name('payment_error');
-
 Route::get('/payment_success_signup', function() { return view('welcome'); })->name('payment_success_signup');
 Route::get('/payment_error_signup', function() { return view('welcome'); })->name('payment_error_signup');

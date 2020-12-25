@@ -23,7 +23,7 @@ class ProductController extends Controller
         DB::table('site_histories')->insert(['user_id' => $user->id, 'page_name'=>'Products', 'page_url'=>'admin/product', 'user_action'=>'Browse', 'created_at'=>$this->now]);
 
         $products = DB::select("SELECT P.id, P.name_en, P.name_hb, P.description_en, P.description_hb, P.price, P.product_type, C.id category_id, C.name_en category_name_en,
-                GROUP_CONCAT(PI.file_name SEPARATOR '$$$') product_file_names, GROUP_CONCAT(PI.image_data SEPARATOR '$$$') product_images
+                GROUP_CONCAT(PI.file_name SEPARATOR '$$$') product_file_names, GROUP_CONCAT(PI.image_data ORDER BY PI.id ASC SEPARATOR '$$$') product_images
             FROM products P LEFT JOIN categories C ON P.category_id=C.id LEFT JOIN product_images PI ON P.id=PI.product_id
             WHERE P.user_id=:user_id
             GROUP BY P.id, P.name_en, P.name_hb, P.description_en, P.description_hb, P.price, P.product_type, C.id, C.name_en", ['user_id'=>$user->id]);

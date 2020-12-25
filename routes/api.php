@@ -29,7 +29,7 @@ Route::group(['middleware' => ['auth:api']], function(){
 
         // Common
         Route::get('common_categories', 'CommonController@get_categories');
-        Route::get('common_products', 'CommonController@get_products');
+        Route::get('category_products/{category_id}', 'CommonController@get_products');
 
         // Category Management
         Route::get('categories', 'CategoryController@get_categories');
