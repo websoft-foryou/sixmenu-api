@@ -1,23 +1,24 @@
 {
   "files": {
-    "main.css": "/static/css/main.aa719c69.chunk.css",
-    "main.js": "/static/js/main.8655278c.chunk.js",
-    "main.js.map": "/static/js/main.8655278c.chunk.js.map",
+    "main.css": "/static/css/main.bfb5a153.chunk.css",
+    "main.js": "/static/js/main.3b2df311.chunk.js",
+    "main.js.map": "/static/js/main.3b2df311.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.b40cb612.js",
     "runtime-main.js.map": "/static/js/runtime-main.b40cb612.js.map",
     "static/css/2.bc581860.chunk.css": "/static/css/2.bc581860.chunk.css",
-    "static/js/2.5d9ceccd.chunk.js": "/static/js/2.5d9ceccd.chunk.js",
-    "static/js/2.5d9ceccd.chunk.js.map": "/static/js/2.5d9ceccd.chunk.js.map",
+    "static/js/2.44476515.chunk.js": "/static/js/2.44476515.chunk.js",
+    "static/js/2.44476515.chunk.js.map": "/static/js/2.44476515.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.cafb1414978cbe1242be5f16dfd71c89.js": "/precache-manifest.cafb1414978cbe1242be5f16dfd71c89.js",
+    "precache-manifest.b41c3ae0182c2167f6977bea9639d911.js": "/precache-manifest.b41c3ae0182c2167f6977bea9639d911.js",
     "service-worker.js": "/service-worker.js",
     "static/css/2.bc581860.chunk.css.map": "/static/css/2.bc581860.chunk.css.map",
-    "static/css/main.aa719c69.chunk.css.map": "/static/css/main.aa719c69.chunk.css.map",
-    "static/js/2.5d9ceccd.chunk.js.LICENSE": "/static/js/2.5d9ceccd.chunk.js.LICENSE",
+    "static/css/main.bfb5a153.chunk.css.map": "/static/css/main.bfb5a153.chunk.css.map",
+    "static/js/2.44476515.chunk.js.LICENSE": "/static/js/2.44476515.chunk.js.LICENSE",
     "static/media/PayPal.svg": "/static/media/PayPal.d394222a.svg",
     "static/media/UploadIcon.svg": "/static/media/UploadIcon.1cedb6e9.svg",
     "static/media/index.scss": "/static/media/zw.98a0162e.svg",
     "static/media/alcohol.svg": "/static/media/alcohol.8b2360a5.svg",
+    "static/media/allcategory.png": "/static/media/allcategory.06134b8a.png",
     "static/media/chili.svg": "/static/media/chili.b8f22f90.svg",
     "static/media/hero-bg.jpg": "/static/media/hero-bg.e166ba53.jpg",
     "static/media/il.svg": "/static/media/il.66d49a1a.svg",
@@ -25,6 +26,7 @@
     "static/media/mastercard.svg": "/static/media/mastercard.4961af17.svg",
     "static/media/meat.svg": "/static/media/meat.34cf599e.svg",
     "static/media/page-header-bg.jpg": "/static/media/page-header-bg.ccb29f9c.jpg",
+    "static/media/product.png": "/static/media/product.9583f278.png",
     "static/media/star-full.svg": "/static/media/star-full.cf33ec77.svg",
     "static/media/star.svg": "/static/media/star.128cff12.svg",
     "static/media/us.svg": "/static/media/us.36ab476e.svg",
@@ -34,8 +36,8 @@
   "entrypoints": [
     "static/js/runtime-main.b40cb612.js",
     "static/css/2.bc581860.chunk.css",
-    "static/js/2.5d9ceccd.chunk.js",
-    "static/css/main.aa719c69.chunk.css",
-    "static/js/main.8655278c.chunk.js"
+    "static/js/2.44476515.chunk.js",
+    "static/css/main.bfb5a153.chunk.css",
+    "static/js/main.3b2df311.chunk.js"
   ]
 }
