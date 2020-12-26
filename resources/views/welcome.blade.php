@@ -17,7 +17,7 @@
         rel="stylesheet">
     <title>Six Menu - Restaurant in Israel</title>
     <link href="{{ asset('/static/css/2.bc581860.chunk.css') }}" rel="stylesheet">
-    <link href="{{ asset('/static/css/main.bfb5a153.chunk.css') }}" rel="stylesheet">
+    <link href="{{ asset('/static/css/main.ea50f551.chunk.css') }}" rel="stylesheet">
 </head>
 <body>
 <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -81,6 +81,6 @@
         a()
     }([])</script>
 <script src="{{ asset('/static/js/2.44476515.chunk.js') }}"></script>
-<script src="{{ asset('/static/js/main.3b2df311.chunk.js') }}"></script>
+<script src="{{ asset('/static/js/main.cbb40e5a.chunk.js') }}"></script>
 </body>
 </html>

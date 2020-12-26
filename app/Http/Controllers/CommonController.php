@@ -42,7 +42,7 @@ class CommonController extends Controller
 			$products = DB::select("SELECT P.id, P.name_en, P.name_hb, P.description_en, P.description_hb, P.price, P.product_type, C.id category_id, C.name_en category_name_en,
                 GROUP_CONCAT(PI.file_name SEPARATOR '$$$') product_file_names, GROUP_CONCAT(PI.image_data ORDER BY PI.id ASC SEPARATOR '$$$') product_images
             FROM products P LEFT JOIN categories C ON P.category_id=C.id LEFT JOIN product_images PI ON P.id=PI.product_id
-            WHERE P.user_id=:user_id 
+            WHERE P.user_id=:user_id
             GROUP BY P.id, P.name_en, P.name_hb, P.description_en, P.description_hb, P.price, P.product_type, C.id, C.name_en", ['user_id'=>$user->id]);
 
 		}
@@ -53,7 +53,7 @@ class CommonController extends Controller
             WHERE P.user_id=:user_id AND P.category_id=:category_id
             GROUP BY P.id, P.name_en, P.name_hb, P.description_en, P.description_hb, P.price, P.product_type, C.id, C.name_en", ['user_id'=>$user->id, 'category_id'=>$request->category_id]);
 		}
-		
+
 
         $data = [];
         foreach($products as $product) {
@@ -70,6 +70,58 @@ class CommonController extends Controller
             $product_data['product_type'] = explode(',', $product->product_type);
 
             $data[] = $product_data;
+        }
+
+        return response()->json(['success' => true, 'result' => $data ]);
+    }
+
+
+    public function get_restaurants()
+    {
+        $user = Auth::user();
+        $restaurants = DB::table('restaurants')->orderBy('name_en', 'asc')->get();
+
+        $data = [];
+        foreach($restaurants as $restaurant) {
+            $restaurant_data = [];
+            $restaurant_data['id'] = $restaurant->id;
+            $restaurant_data['name_en'] = $restaurant->name_en;
+            $restaurant_data['name_hb'] = $restaurant->name_hb;
+            $restaurant_data['description_en'] = $restaurant->description_en;
+            $restaurant_data['description_hb'] = $restaurant->description_hb;
+            $restaurant_data['address_en'] = $restaurant->address_en;
+            $restaurant_data['address_hb'] = $restaurant->address_hb;
+            $restaurant_data['latitude'] = $restaurant->latitude;
+            $restaurant_data['longitude'] = $restaurant->longitude;
+            $restaurant_data['location'] = $restaurant->location;
+            $restaurant_data['mon_from'] = $restaurant->mon_from;
+            $restaurant_data['mon_to'] = $restaurant->mon_to;
+            $restaurant_data['tue_from'] = $restaurant->tue_from;
+            $restaurant_data['tue_to'] = $restaurant->tue_to;
+            $restaurant_data['wed_from'] = $restaurant->wed_from;
+            $restaurant_data['wed_to'] = $restaurant->wed_to;
+            $restaurant_data['thu_from'] = $restaurant->thu_from;
+            $restaurant_data['thu_to'] = $restaurant->thu_to;
+            $restaurant_data['fri_from'] = $restaurant->fri_from;
+            $restaurant_data['fri_to'] = $restaurant->fri_to;
+            $restaurant_data['sat_from'] = $restaurant->sat_from;
+            $restaurant_data['sat_to'] = $restaurant->sat_to;
+            $restaurant_data['sun_from'] = $restaurant->sun_from;
+            $restaurant_data['sun_to'] = $restaurant->sun_to;
+            $restaurant_data['facebook'] = $restaurant->facebook;
+            $restaurant_data['twitter'] = $restaurant->twitter;
+            $restaurant_data['linkedin'] = $restaurant->linkedin;
+            $restaurant_data['telegram'] = $restaurant->telegram;
+            $restaurant_data['youtube'] = $restaurant->youtube;
+
+            $restaurant_images = DB::table('restaurant_images')->where('restaurant_id', $restaurant->id)->get();
+            $images_data = [];
+            foreach($restaurant_images as $restaurant_image) {
+                $images_data[] = $restaurant_image->image_data;
+            }
+            $restaurant_data['images'] = $images_data;
+
+            $data[] = $restaurant_data;
         }
 
         return response()->json(['success' => true, 'result' => $data ]);
