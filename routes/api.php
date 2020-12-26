@@ -19,7 +19,7 @@ Route::group(['namespace'=> 'App\Http\Controllers\Auth'], function() {
     Route::post('verify_email', 'RegisterController@verify_email');
     Route::post('login_user', 'LoginController@login_user');
     Route::post('complete_signup_payment', 'RegisterController@complete_payment');
-
+    Route::post('upgrade_membership', 'RegisterController@upgrade_membership');
 });
 
 

@@ -32,3 +32,5 @@ Route::get('/payment_success', function() { return view('welcome'); })->name('pa
 Route::get('/payment_error', function() { return view('welcome'); })->name('payment_error');
 Route::get('/payment_success_signup', function() { return view('welcome'); })->name('payment_success_signup');
 Route::get('/payment_error_signup', function() { return view('welcome'); })->name('payment_error_signup');
+
+//Route::get('/payment_success_signup', 'RegisterController@complete_payment')->name('payment_success_signup');
